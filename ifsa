@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İFŞALAR</title>
+<style>
+body {
+  margin: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+.card { padding: 24px; }
+button {
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 10px;
+  background: #e63946;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+a { color: #aaa; }
+#reveal { display: none; }
+img { max-width: 100%; width: 320px; border-radius: 12px; }
+</style>
+</head>
+<body>
+<div class="card" id="intro">
+  <h1>İFŞALAR</h1>
+  <p>Video link: <a href="#">example.com/video-482</a></p>
+  <button onclick="showSurprise()">Aç</button>
+</div>
+
+<div class="card" id="reveal">
+  <img src="https://files.catbox.moe/e3i7e2.jpeg" alt="Şəkil">
+  <audio id="sound" src="https://files.catbox.moe/1segc9.mp3" preload="auto"></audio>
+  <p id="exitText">Bir az gözlə...</p>
+  <button id="exit" style="display:none" onclick="history.back()">Çıxış</button>
+</div>
+
+<script>
+function showSurprise() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('reveal').style.display = 'block';
+
+  const sound = document.getElementById('sound');
+  sound.volume = 1.0;
+  sound.play().catch(() => {
+    document.getElementById('exitText').textContent =
+      'Səs başlamadı. Səhifəni yenidən açıb yoxla.';
+  });
+
+  setTimeout(() => {
+    document.getElementById('exitText').textContent = '';
+    document.getElementById('exit').style.display = 'inline-block';
+  }, 6000);
+}
+</script>
+</body>
+</html>
