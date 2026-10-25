@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font: 22px Arial;
+    text-align: center;
+  }
+  #exit {
+    display: none;
+    margin: 25px auto;
+    padding: 15px 30px;
+    font-size: 20px;
+  }
+  img {
+    width: 100%;
+    height: 75vh;
+    object-fit: contain;
+  }
+</style>
+
+<img id="scare" src="screamer.jpg" alt="Скример">
+<p id="timer">Кнопка выхода появится через 6 секунд</p>
+<button id="exit" onclick="history.back()">Выйти</button>
+
+<script>
+  let seconds = 6;
+  const timer = document.getElementById('timer');
+  const button = document.getElementById('exit');
+
+  const countdown = setInterval(() => {
+    seconds--;
+    if (seconds <= 0) {
+      clearInterval(countdown);
+      timer.textContent = 'Теперь можно выйти';
+      button.style.display = 'block';
+    } else {
+      timer.textContent =
+        'Кнопка выхода появится через ' + seconds + ' секунд';
+    }
+  }, 1000);
+</script>
+</html>
